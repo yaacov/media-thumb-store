@@ -115,7 +115,10 @@ myMedia.updateFromDir(__dirname + '/img', function() {
             findById(key, callback(err, result))
             create(object, callback(err))
         Defaults: null, ( fall back to memStore )
-      
+        
+    defaultIcon {String}
+        Path a default image file, used when thumbnailer fails
+
 ## gmThumbnailer Options
 
     keyGenerator {function({String})}
