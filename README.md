@@ -57,10 +57,10 @@ A plug-in thumbnail image generator
  *    callback function that will recive the thumb image file path
  */
 var thumbnailer = function(path, size, callback) {
-// do nothing with image in path
-// ...
-// set err to null, and send back a static image path
-callback(err, 'my-thumb.jpg');
+  // do nothing with image in path
+  // ...
+  // set err to null, and send back a static image path
+  callback(err, 'my-thumb.jpg');
 };
 ```
 
