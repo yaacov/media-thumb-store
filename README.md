@@ -35,39 +35,52 @@ On Debian
 var mediaThumbStore = require('media-thumb-store');
 
 /**
- * Create a thumbnail generator for images
- * Thumbnail images will be cached in this folder under
+ * Create a new thumbnail generator for images
+ * Use the included GraphicMagic thumbnailer.
+ *
+ * Thumbnail images will be cached in './' folder under
  * Two sub-folders 'normal' and 'large'
- * This folders must exist before first thumbnail caching.
+ * This two sub-folders must exist before first thumbnail is cached.
  *
  *   thumb-folder|normal|thumb1.jpg
  *               |      |...
  *               |
  *               |large|thumb1.jpg
  *                     | ...
+ *
+ * Options:
+ *   thumbDir {String} the root directory for the thumbnails cache
  */
 var imageThumbnailer = new mediaThumbStore.gmThumbnailer({
   thumbDir: __dirname
 });
 
-// Create a thumbnail media store
+/**
+ * Create a new media storage
+ *
+ * Options:
+ *   defaultIcon {String} the path to the default thumbnail image
+ *      Used if thumbnailer function fails.
+ *   imageThumbnailer {function} the thumbnailer function to be
+ *      Used for media with 'image' mime type.
+ */
 var myMedia = new mediaThumbStore({
   defaultIcon: __dirname + '/normal/default.jpg',
   imageThumbnailer: imageThumbnailer
 });
 
-// Build database of media files in folder
+// Scan all media files in './img' folder and add them to storage
 myMedia.updateFromDir(__dirname + '/img', function() {
   // Print out all files found
   myMedia.find({}, function(err, results) {
     console.log(results);
   });
   
-  // Create thumbnail
+  // Create thumbnail for the first file named 'happy-cat'
   myMedia.find({where: ['name==happy-cat']}, function(err, results) {
-    var key = results[0]._id;
+    var id = results[0]._id;
 
-    myMedia.findThumbById(key, 'normal', function(err, path) {
+    myMedia.findThumbById(id, 'normal', function(err, path) {
       console.log('Created thumbnail: ' + path);
     });
   });
