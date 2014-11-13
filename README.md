@@ -46,23 +46,23 @@ A plug-in thumbnail image generator
     To null.
     
     Example:
-        ```js
-        /** 
-         * An example thumbnailer function that always return the same thumb
-         * Not very usefull...
-         *
-         * @param {String} path The path to a media file
-         * @param {String} size The size of the thumbnail ('normal', 'large')
-         * @param {function({Error} err, {String} path)} callback The 
-         *    callback function that will recive the thumb image file path
-         */
-        var thumbnailer = function(path, size, callback) {
-          // do nothing with image in path
-          // ...
-          // set err to null, and send back a static image path
-          callback(err, 'my-thumb.jpg');
-        };
-        ```
+```js
+/** 
+ * An example thumbnailer function that always return the same thumb
+ * Not very usefull...
+ *
+ * @param {String} path The path to a media file
+ * @param {String} size The size of the thumbnail ('normal', 'large')
+ * @param {function({Error} err, {String} path)} callback The 
+ *    callback function that will recive the thumb image file path
+ */
+var thumbnailer = function(path, size, callback) {
+// do nothing with image in path
+// ...
+// set err to null, and send back a static image path
+callback(err, 'my-thumb.jpg');
+};
+```
 
 ( An example thumbnail module is in lib/thumbnailers/ )
 
