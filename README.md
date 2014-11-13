@@ -63,8 +63,8 @@ var myMedia = new mediaThumbStore({
 
 // Scan all media files in './img' folder and add them to storage
 myMedia.updateFromDir(__dirname + '/img', function() {
-  // Print out all files found
-  myMedia.find({}, function(err, results) {
+  // Print first 100 files found, order by name
+  myMedia.find({skip: 0, limit: 100, sortBy: 'name'}, function(err, results) {
     console.log(results);
   });
   
