@@ -81,6 +81,8 @@ myMedia.updateFromDir(__dirname + '/img', function() {
 ```
 ## Options
 
+#### mediaThumbStore Options
+
     mimeList {Array.<String>}
         An array of supported mime types.
         Defaults: ['image/jpeg',
@@ -119,7 +121,7 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     defaultIcon {String}
         Path a default image file, used when thumbnailer fails
 
-## gmThumbnailer Options
+#### gmThumbnailer Options
 
     keyGenerator {function({String})}
         Key generator is a function that generates a unique key for the
@@ -136,11 +138,10 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     thumbQuality {Number}
         The generated thumbnail quality (1 bad .. 100 best)
         Defaults to 50
-      
-## Thumbnail plug-ins
 
-A plug-in thum
-      bnail image generator
+## Plugins
+
+#### Thumbnailers plugins
 
     The thumbnailer is a function that gets a p
       ath to a media file, and
@@ -180,7 +181,7 @@ var thumbnailer = function(path, size, callback) {
 
 ( An example thumbnail module is in lib/thumbnailers/ )
 
-## Back-end storage plug-ins
+#### Backend storage plug-ins
 
 A plug-in store module for data storage
 
