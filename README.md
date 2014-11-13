@@ -183,10 +183,13 @@ A plug-in store module for data storage
 
     The find function options:
         limt {Nuber} max number of results
+        
         skip {Number} start at result
+        
         sortBy {String} field name to sort by:
             'name' will sort result by the 'name' field
             '-name' will sort by 'name' backwords
+            
         where {Array.<String>} a list of where strings
             Format of where string: <field><op><value>
             
