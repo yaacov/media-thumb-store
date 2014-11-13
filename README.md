@@ -31,9 +31,9 @@ On Debian
 
 ## Basic Usage
 
-    ```js
-    var mediaThumbStore = require('media-thumb-store');
-    ```
+```js
+var mediaThumbStore = require('media-thumb-store');
+```
 
 ## Thumbnail plug-ins
 
