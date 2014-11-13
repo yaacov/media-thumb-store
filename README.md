@@ -126,7 +126,7 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     keyGenerator {function({String})}
         Key generator is a function that generates a unique key for the
         object path field {String}.
-        Default is md5.of the path field.
+        Default is md5 of the objects path field.
         
     thumbDir {String}
         Path to the thumbnail directory
@@ -143,33 +143,24 @@ myMedia.updateFromDir(__dirname + '/img', function() {
 
 #### Thumbnailers plugins
 
-    The thumbnailer is a function that gets a p
-      ath to a media file, and
-    A cal
-      lback function(err, thumbnailPath).
-    
-      If successful it will 
-      call the callback function with a path
-       to
-    Generated thumbn
-      ail. On fail it will set the thumbnailPath
-    To nu
-      ll.
+The thumbnailer is a function that gets a path to a media file, and
+A callback function(err, thumbnailPath).
+If successful it will call the callback function with a path to
+Generated thumbnail. On fail it will set the thumbnailPath
+To null.
 
 Example:
 
 ```js
 /** 
- * An example thum
-      bnailer function that alwa
-      ys return the same thumb
- * Not very usefull...
+ * An example thumbnailer function that always return the same thumb
+ * Not very useful...
  *
  * @par
       am {String} path The path to a media file
  * @param {String} size The size of the thumbnail ('normal', 'large')
  * @param {function({Error} err, {String} path)} callback The 
- *    callback function that will recive the thumb image file path
+ *    callback function that will receive the thumb image file path
  */
 var thumbnailer = function(path, size, callback) {
   // do nothing with image in path
@@ -190,5 +181,26 @@ A plug-in store module for data storage
         findById(key, callback(err, result))
         create(object, callback(err))
 
+    The find function options:
+        limt {Nuber} max number of results
+        skip {Number} start at result
+        sortBy {String} field name to sort by:
+            'name' will sort result by the 'name' field
+            '-name' will sort by 'name' backwords
+        where {Array.<String>} a list of where strings
+            Format of where string: <field><op><value>
+            
+            For example:
+                'name~=yosi' filter results where name
+                match the regular exprsion /yosi/
+                'name==yosi' filter results where name
+                is exactly 'yosi'
+            
+            implemented Operators:
+                ~= Regular exprsion
+                == Equal to
+                <  Less then
+                >  greater then
+            
 ( An example store module is in lib/backends/ )
 
