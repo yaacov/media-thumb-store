@@ -5,7 +5,7 @@
   "author": "Yaacov Zamir <kobi.zamir@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
