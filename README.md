@@ -88,22 +88,26 @@ myMedia.updateFromDir(__dirname + '/img', function() {
             'video/webm',
             'video/mp4',
             'audio/mpeg']
+            
     imageThumbnailer {function(mediaPath, size, callback(Error, thumbPath)}
         A function that get a path to a media file and callback with
         a path to a generated/cached thumbnail image
         Used for files with image mime type.
         Media and Thumbnail paths are absolute.
         Defaults: null, use default icon image
+        
     audioThumbnailer {function(mediaPath, size, callback(Error, thumbPath)}
         A function that get a path to a media file and callback with
         a path to a generated/cached thumbnail image
         Used for files with audio mime type.
         Defaults: null, use default icon image
+        
     videoThumbnailer {function(mediaPath, size, callback(Error, thumbPath)}
         A function that get a path to a media file and callback with
         a path to a generated/cached thumbnail image
         Used for files with video mime type.
         Defaults: null, use default icon image
+        
     store
         A back-end store module for data storage.
         The store module should implement:
@@ -115,17 +119,20 @@ myMedia.updateFromDir(__dirname + '/img', function() {
 ## gmThumbnailer Options
 
     keyGenerator {function({String})}
-      Key generator is a function that generates a unique key for the
-      object path field {String}.
-      Default is md5.of the path field.
+        Key generator is a function that generates a unique key for the
+        object path field {String}.
+        Default is md5.of the path field.
+        
     thumbDir {String}
-      Path to the thumbnail directory
+        Path to the thumbnail directory
+        
     thumbSizes {Object}
-      The default sizes of the generated thumbnails
-      Defaults to {normal: 128, large: 246}
+        The default sizes of the generated thumbnails
+        Defaults to {normal: 128, large: 246}
+        
     thumbQuality {Number}
-      The generated thumbnail quality (1 bad .. 100 best)
-      Defaults to 50
+        The generated thumbnail quality (1 bad .. 100 best)
+        Defaults to 50
       
 ## Thumbnail plug-ins
 
