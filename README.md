@@ -33,6 +33,46 @@ On Debian
 
 ```js
 var mediaThumbStore = require('media-thumb-store');
+
+/**
+ * Create a thumbnail generator for images
+ * Thumbnail images will be cached in this folder under
+ * Two sub-folders 'normal' and 'large'
+ * This folders must exist before first thumbnail caching.
+ *
+ *   thumb-folder|normal|thumb1.jpg
+ *               |      |...
+ *               |
+ *               |large|thumb1.jpg
+ *                     | ...
+ */
+var imageThumbnailer = new mediaThumbStore.gmThumbnailer({
+  thumbDir: __dirname
+});
+
+// Create a thumbnail media store
+var myMedia = new mediaThumbStore({
+  defaultIcon: __dirname + '/normal/default.jpg',
+  imageThumbnailer: imageThumbnailer
+});
+
+// Build database of media files in folder
+myMedia.updateFromDir(__dirname + '/img', function() {
+  // Print out all files found
+  myMedia.find({}, function(err, results) {
+    console.log(results);
+  });
+  
+  // Create thumbnail
+  myMedia.find({where: ['name==happy-cat']}, function(err, results) {
+    var key = results[0]._id;
+
+    myMedia.findThumbById(key, 'normal', function(err, path) {
+      console.log('Created thumbnail: ' + path);
+    });
+  });
+});
+    
 ```
 
 ## Thumbnail plug-ins

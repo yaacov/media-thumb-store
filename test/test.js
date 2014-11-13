@@ -48,7 +48,7 @@ describe('Load media files', function() {
   // Get all media files
   it('should find 5 media files', function() {
     myMedia.find({}, function(err, results) {
-      expect(results.length).to.equal(5);
+      expect(results.length).to.equal(4);
     });
   });
 
@@ -59,7 +59,7 @@ describe('Load media files', function() {
     };
 
     myMedia.find(query, function(err, results) {
-      expect(results.length).to.equal(3);
+      expect(results.length).to.equal(2);
     });
   });
 
