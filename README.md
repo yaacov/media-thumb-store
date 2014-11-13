@@ -48,8 +48,6 @@ var mediaThumbStore = require('media-thumb-store');
  *               |large|thumb1.jpg
  *                     | ...
  *
- * Options:
- *   thumbDir {String} the root directory for the thumbnails cache
  */
 var imageThumbnailer = new mediaThumbStore.gmThumbnailer({
   thumbDir: __dirname
@@ -57,12 +55,6 @@ var imageThumbnailer = new mediaThumbStore.gmThumbnailer({
 
 /**
  * Create a new media storage
- *
- * Options:
- *   defaultIcon {String} the path to the default thumbnail image
- *      Used if thumbnailer function fails.
- *   imageThumbnailer {function} the thumbnailer function to be
- *      Used for media with 'image' mime type.
  */
 var myMedia = new mediaThumbStore({
   defaultIcon: __dirname + '/normal/default.jpg',
@@ -87,24 +79,83 @@ myMedia.updateFromDir(__dirname + '/img', function() {
 });
     
 ```
+## Options
 
+    mimeList {Array.<String>}
+        An array of supported mime types.
+        Defaults: ['image/jpeg',
+            'image/png',
+            'video/webm',
+            'video/mp4',
+            'audio/mpeg']
+    imageThumbnailer {function(mediaPath, size, callback(Error, thumbPath)}
+        A function that get a path to a media file and callback with
+        a path to a generated/cached thumbnail image
+        Used for files with image mime type.
+        Media and Thumbnail paths are absolute.
+        Defaults: null, use default icon image
+    audioThumbnailer {function(mediaPath, size, callback(Error, thumbPath)}
+        A function that get a path to a media file and callback with
+        a path to a generated/cached thumbnail image
+        Used for files with audio mime type.
+        Defaults: null, use default icon image
+    videoThumbnailer {function(mediaPath, size, callback(Error, thumbPath)}
+        A function that get a path to a media file and callback with
+        a path to a generated/cached thumbnail image
+        Used for files with video mime type.
+        Defaults: null, use default icon image
+    store
+        A back-end store module for data storage.
+        The store module should implement:
+            find(options, callback(err, results))
+            findById(key, callback(err, result))
+            create(object, callback(err))
+        Defaults: null, ( fall back to memStore )
+      
+## gmThumbnailer Options
+
+    keyGenerator {function({String})}
+      Key generator is a function that generates a unique key for the
+      object path field {String}.
+      Default is md5.of the path field.
+    thumbDir {String}
+      Path to the thumbnail directory
+    thumbSizes {Object}
+      The default sizes of the generated thumbnails
+      Defaults to {normal: 128, large: 246}
+    thumbQuality {Number}
+      The generated thumbnail quality (1 bad .. 100 best)
+      Defaults to 50
+      
 ## Thumbnail plug-ins
 
-A plug-in thumbnail image generator
+A plug-in thum
+      bnail image generator
 
-    The thumbnailer is a function that gets a path to a media file, and
-    A callback function(err, thumbnailPath).
-    If successful it will call the callback function with a path to
-    Generated thumbnail. On fail it will set the thumbnailPath
-    To null.
+    The thumbnailer is a function that gets a p
+      ath to a media file, and
+    A cal
+      lback function(err, thumbnailPath).
     
-    Example:
+      If successful it will 
+      call the callback function with a path
+       to
+    Generated thumbn
+      ail. On fail it will set the thumbnailPath
+    To nu
+      ll.
+
+Example:
+
 ```js
 /** 
- * An example thumbnailer function that always return the same thumb
+ * An example thum
+      bnailer function that alwa
+      ys return the same thumb
  * Not very usefull...
  *
- * @param {String} path The path to a media file
+ * @par
+      am {String} path The path to a media file
  * @param {String} size The size of the thumbnail ('normal', 'large')
  * @param {function({Error} err, {String} path)} callback The 
  *    callback function that will recive the thumb image file path
