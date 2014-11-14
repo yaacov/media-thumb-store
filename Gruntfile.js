@@ -29,6 +29,21 @@ module.exports = function(grunt) {
         'examples/**/*.js'
       ]
     },
+    jsdoc : {
+        dist : {
+            src: [
+              './lib/*.js', 
+              './lib/backends/*.js', 
+              './lib/thumbnailers/*.js'
+            ],
+            jsdoc: './node_modules/.bin/jsdoc',
+            options: {
+                destination: 'doc',
+                configure: './node_modules/jsdoc/conf.json.EXAMPLE',
+                template: './node_modules/ink-docstrap/template'
+            }
+        }
+    },
     simplemocha: {
       all: {src: ['test/*.js']}
     }
