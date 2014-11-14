@@ -292,7 +292,7 @@ A plug-in store module for data storage
             'name' will sort result by the 'name' field
             '-name' will sort by 'name' backwords
             
-        where {Array.<String>} a list of where strings
+        where {String[]} a list of where strings
             
 ( An example store module is in lib/backends/ )
 
