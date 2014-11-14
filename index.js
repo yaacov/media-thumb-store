@@ -19,3 +19,5 @@ module.exports.memStore = require('./lib/backends/mem-backend');
 // Thumbnail generators
 module.exports.gmThumbnailer =
   require('./lib/thumbnailers/gm-thumbnailer');
+module.exports.ffmpegThumbnailer =
+  require('./lib/thumbnailers/ffmpeg-thumbnailer');
