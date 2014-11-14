@@ -12,8 +12,10 @@ var thumbSize = 'large';
 describe('Load media files', function() {
   // Thumbnail generator for images
   var imageThumbnailer;
-  // Thumbnail generator for videos
+  // Thumbnail generator for video
   var videoThumbnailer;
+  // Storage backend
+  var myStore = new mediaThumbStore.mongooseStore();
   // Media store
   var myMedia ;
 
@@ -34,19 +36,22 @@ describe('Load media files', function() {
 
     // Create a thumbnail generator for images
     videoThumbnailer = new mediaThumbStore.ffmpegThumbnailer({
-      thumbDir: thumbDir
+      thumbDir: __dirname
     });
 
     // Create a thumbnail media store
     myMedia = new mediaThumbStore({
       defaultIcon: 'default.jpeg',
+      store: myStore,
       imageThumbnailer: imageThumbnailer,
       videoThumbnailer: videoThumbnailer
     });
 
-    // Search and append all media files in media folder to the database
-    myMedia.updateFromDir(mediaDir, function() {
-      done();
+    // Search and append all media files in media folder
+    myStore.removeAll(function(err) {
+      myMedia.updateFromDir(mediaDir, function() {
+        done();
+      });
     });
   });
 
@@ -81,36 +86,6 @@ describe('Load media files', function() {
 
       myMedia.findThumbById(key, thumbSize, function(err, path) {
         expect(path).to.equal('default.jpeg');
-        done();
-      });
-    });
-  });
-
-  // Get a thumb path for an image
-  it('video-file: should create a thumbnail image and save it', function(done) {
-    var query = {
-      where: ['mime~=^video']
-    };
-
-    myMedia.find(query, function(err, results) {
-      var key = results[0]._id;
-      myMedia.findThumbById(key, thumbSize, function(err, path) {
-        expect(fs.existsSync(path)).to.equal(true);
-        done();
-      });
-    });
-  });
-
-  // Get a thumb path for an image
-  it('image-file: should create a thumbnail image and save it', function(done) {
-    var query = {
-      where: ['mime~=^image', 'name==night-cats']
-    };
-
-    myMedia.find(query, function(err, results) {
-      var key = results[0]._id;
-      myMedia.findThumbById(key, thumbSize, function(err, path) {
-        expect(fs.existsSync(path)).to.equal(true);
         done();
       });
     });

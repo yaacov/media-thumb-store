@@ -14,7 +14,10 @@ module.exports = require('./lib/media-thumb-store');
  */
 
 // storage backends
-module.exports.memStore = require('./lib/backends/mem-backend');
+module.exports.memStore =
+  require('./lib/backends/mem-backend');
+module.exports.mongooseStore =
+  require('./lib/backends/mongoose-backend');
 
 // Thumbnail generators
 module.exports.gmThumbnailer =

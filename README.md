@@ -12,6 +12,8 @@ Automatically search for media files in media directory.
 #### Included plug-ins:
 
     mem-backend: a storage back-end for storing data in a memory dictionary.
+    mongoose-backend: a storage back-end for storing data in MongoDB.
+    
     gm-thumbnailer: a thumbnailer plug-in for creating image thumbnails.
         This plug-in require GraphicMagic to be installed and on the system path.
     ffmpeg-thumbnailer: a thumbnailer plug-in for creating video thumbnails.
@@ -127,6 +129,28 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     defaultIcon {String}
         Path a default image file, used when thumbnailer fails
 
+###### Implements:
+    find([options], callback(err, results))
+        Get media items from the data storage.
+        Options are passed to the storae backend, 
+        Backend should implement:
+            skip {Number}
+            limit {Number}
+            sortBy {String}
+            where {Array.<String>}
+        
+    findById(key, callback(err, result))
+        Get one media item from the data storage.
+    
+    findThumbById(key, size, callback(err, result))
+        Get a path to cached/generated thumbnail image of a media item.
+    
+    create(filePath, callback(err))
+        Append a media item to the data storage.
+    
+    updateFromDir(root, callback(err))
+        Recurcivly append/update all media items in a root folder.
+    
 #### gmThumbnailer 
 
 ###### Options
@@ -183,6 +207,24 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     create(object, callback(err))
     update(key, object, callback(err))
     remove(key, callback(err))
+    removeAll(callback(err))
+
+#### mongooseStore 
+
+###### Options
+
+    url {String}
+        MongoDB database url.
+        Default to 'mongodb://localhost/mediafiles'
+
+###### Implements
+
+    find(options, callback(err, results))
+    findById(key, callback(err, result))
+    create(object, callback(err))
+    update(key, object, callback(err))
+    remove(key, callback(err))
+    removeAll(callback(err))
 
 ## Plugins
 
