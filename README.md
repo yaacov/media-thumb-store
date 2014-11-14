@@ -151,19 +151,20 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     updateFromDir(root, callback(err))
         Recurcivly append/update all media items in a root folder.
 
-######## Format of where string: <field><op><value>
-
-    For example:
-        'name~=yosi' filter results where name
-        match the regular exprsion /yosi/
-        'name==yosi' filter results where name
-        is exactly 'yosi'
+###### Format of where string: '{field}{operator}{value}'
 
     implemented Operators:
         ~= Regular exprsion
         == Equal to
         <  Less then
         >  greater then
+    
+    For example:
+        'name~=yosi' filter results where name
+        match the regular exprsion /yosi/
+        
+        'name==yosi' filter results where name
+        is exactly 'yosi'
 
 #### gmThumbnailer 
 
