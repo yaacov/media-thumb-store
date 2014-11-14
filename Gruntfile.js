@@ -32,8 +32,8 @@ module.exports = function(grunt) {
     jsdoc : {
         dist : {
             src: [
-              './lib/*.js', 
-              './lib/backends/*.js', 
+              './lib/*.js',
+              './lib/backends/*.js',
               './lib/thumbnailers/*.js'
             ],
             jsdoc: './node_modules/.bin/jsdoc',
