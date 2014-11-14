@@ -165,7 +165,7 @@ myMedia.updateFromDir(__dirname + '/img', function() {
         
     thumbSizes {Object}
         The default sizes of the generated thumbnails
-        Defaults to {normal: 128, large: 246}
+        Defaults to {normal: 128, large: 256}
         
     thumbQuality {Number}
         The generated thumbnail quality (1 bad .. 100 best)
@@ -185,7 +185,7 @@ myMedia.updateFromDir(__dirname + '/img', function() {
         
     thumbSizes {Object}
         The default sizes of the generated thumbnails
-         Defaults to {normal: '200:128', large: '400:256'}
+         Defaults to {normal: 128, large: 256}
         
     thumbQuality {Number}
         The generated thumbnail quality (1 bad .. 100 best)
