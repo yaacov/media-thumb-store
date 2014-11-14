@@ -9,7 +9,7 @@ var thumbSize = 'large';
 
 /** Test loading of media files
  */
-describe('Load media files', function() {
+describe('Load media files (Use MongoDB backend)', function() {
   // Thumbnail generator for images
   var imageThumbnailer;
   // Thumbnail generator for video
@@ -49,9 +49,13 @@ describe('Load media files', function() {
 
     // Search and append all media files in media folder
     myStore.removeAll(function(err) {
-      myMedia.updateFromDir(mediaDir, function() {
+      if (err) {
         done();
-      });
+      } else {
+        myMedia.updateFromDir(mediaDir, function() {
+          done();
+        });
+      }
     });
   });
 

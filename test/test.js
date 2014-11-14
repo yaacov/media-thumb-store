@@ -97,6 +97,7 @@ describe('Load media files', function() {
       myMedia.findThumbById(key, thumbSize, function(err, path) {
         // FIXME: fails on travis node, why ?
         //expect(fs.existsSync(path)).to.equal(true);
+        console.log('  FIXME: ffmpeg err - ', err);
         expect(true).to.equal(true);
         done();
       });
