@@ -32,9 +32,9 @@ myMedia.updateFromDir(__dirname + '/img', function() {
   });
 
   // Create thumbnail
-  console.log('\nCreate thumbnail for an video');
+  console.log('\nCreate thumbnail for an image');
   console.log('-----------------------------');
-  myMedia.find({where: ['mime~=video']}, function(err, results) {
+  myMedia.find({where: ['mime~=image']}, function(err, results) {
     var id = results[0]._id;
 
     myMedia.findThumbById(id, 'normal', function(err, path) {
@@ -43,9 +43,9 @@ myMedia.updateFromDir(__dirname + '/img', function() {
   });
 
   // Create thumbnail
-  console.log('\nCreate thumbnail for an image');
+  console.log('\nCreate thumbnail for an video');
   console.log('-----------------------------');
-  myMedia.find({where: ['mime~=image']}, function(err, results) {
+  myMedia.find({where: ['mime~=video']}, function(err, results) {
     var id = results[0]._id;
 
     myMedia.findThumbById(id, 'normal', function(err, path) {

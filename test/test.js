@@ -30,13 +30,16 @@ describe('Load media files', function() {
       thumbDir: thumbDir
     });
 
+    // Create a thumbnail generator for images
+    var videoThumbnailer = new mediaThumbStore.ffmpegThumbnailer({
+      thumbDir: __dirname
+    });
+
     // Create a thumbnail media store
     myMedia = new mediaThumbStore({
       defaultIcon: 'default.jpeg',
       imageThumbnailer: imageThumbnailer,
-      videoThumbnailer: function(path, size, callback) {
-        callback(null, 'video.jpeg');
-      }
+      videoThumbnailer: videoThumbnailer
     });
 
     // Search all media files in media directory
@@ -46,25 +49,27 @@ describe('Load media files', function() {
   });
 
   // Get all media files
-  it('should find 5 media files', function() {
+  it('should find 4 media files', function(done) {
     myMedia.find({}, function(err, results) {
       expect(results.length).to.equal(4);
+      done();
     });
   });
 
   // Get only files with image mime type
-  it('should find 3 image files', function() {
+  it('should find 2 image files', function(done) {
     var query = {
       where: ['mime~=^image']
     };
 
     myMedia.find(query, function(err, results) {
       expect(results.length).to.equal(2);
+      done();
     });
   });
 
   // Get a default thumb path for an video
-  it('should get the default thumb for audio', function() {
+  it('audio-file: should get the default thumb for audio', function(done) {
     var query = {
       where: ['mime~=^audio']
     };
@@ -74,34 +79,37 @@ describe('Load media files', function() {
 
       myMedia.findThumbById(key, thumbSize, function(err, path) {
         expect(path).to.equal('default.jpeg');
+        done();
       });
     });
   });
 
+  /**
+   *
   // Get a thumb path for an image
-  it('should get the video.jpg thumb for video', function() {
+  it('video-file: should create a thumbnail image and save it', function(done) {
     var query = {
       where: ['mime~=^video']
     };
 
     myMedia.find(query, function(err, results) {
       var key = results[0]._id;
-
       myMedia.findThumbById(key, thumbSize, function(err, path) {
-        expect(path).to.equal('video.jpeg');
+        expect(fs.existsSync(path)).to.equal(true);
+        done();
       });
     });
   });
+  */
 
   // Get a thumb path for an image
-  it('should create a thumbnail image and save it', function(done) {
+  it('image-file: should create a thumbnail image and save it', function(done) {
     var query = {
       where: ['mime~=^image', 'name==night-cats']
     };
 
     myMedia.find(query, function(err, results) {
       var key = results[0]._id;
-
       myMedia.findThumbById(key, thumbSize, function(err, path) {
         expect(fs.existsSync(path)).to.equal(true);
         done();

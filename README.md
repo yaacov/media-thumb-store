@@ -14,6 +14,8 @@ Automatically search for media files in media directory.
     mem-backend: a storage back-end for storing data in a memory dictionary.
     gm-thumbnailer: a thumbnailer plug-in for creating image thumbnails.
         This plug-in require GraphicMagic to be installed and on the system path.
+    ffmpeg-thumbnailer: a thumbnailer plug-in for creating video thumbnails.
+        This plug-in require ffmpeg to be installed and on the system path.
 
 ## Install
 
@@ -21,13 +23,15 @@ use npm:
 
     npm install media-thumb-store
 
-#### Generating thumbnails with gm-thumbnailer plug-in
+#### Generating thumbnails with gm-thumbnailer and ffmpeg plugins
 
-This plug-in require GraphicMagic to be installed, download and install [GraphicsMagick](http://www.graphicsmagick.org/) or use your package manager.
-
-On Debian
+This gm plugin require GraphicMagic to be installed, download and install [GraphicsMagick](http://www.graphicsmagick.org/) or use your package manager.
 
     sudo apt-get install graphicsmagick
+
+This ffmpeg plugin require ffmpeg to be installed, download and install [ffmpeg](https://www.ffmpeg.org/) or use your package manager.
+
+    sudo apt-get install ffmpeg
 
 ## Basic Usage
 
