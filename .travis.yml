@@ -1,5 +1,5 @@
 before_install:
-  udo add-apt-repository "deb http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu precise main"
+- sudo add-apt-repository "deb http://ppa.launchpad.net/jon-severinsson/ffmpeg/ubuntu precise main"
 - sudo apt-get update
 - sudo apt-get install graphicsmagick ffmpeg x264
 language: node_js
