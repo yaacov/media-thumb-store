@@ -85,7 +85,9 @@ myMedia.updateFromDir(__dirname + '/img', function() {
 ```
 ## Options
 
-#### mediaThumbStore Options
+#### mediaThumbStore 
+
+###### Options
 
     mimeList {Array.<String>}
         An array of supported mime types.
@@ -125,7 +127,9 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     defaultIcon {String}
         Path a default image file, used when thumbnailer fails
 
-#### gmThumbnailer Options
+#### gmThumbnailer 
+
+###### Options
 
     keyGenerator {function({String})}
         Key generator is a function that generates a unique key for the
@@ -142,6 +146,43 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     thumbQuality {Number}
         The generated thumbnail quality (1 bad .. 100 best)
         Defaults to 50
+
+#### ffmpegThumbnailer 
+
+###### Options
+
+    keyGenerator {function({String})}
+        Key generator is a function that generates a unique key for the
+        object path field {String}.
+        Default is md5 of the objects path field.
+        
+    thumbDir {String}
+        Path to the thumbnail directory
+        
+    thumbSizes {Object}
+        The default sizes of the generated thumbnails
+         Defaults to {normal: '200:128', large: '400:256'}
+        
+    thumbQuality {Number}
+        The generated thumbnail quality (1 bad .. 100 best)
+        Defaults to 50
+
+#### memStore 
+
+###### Options
+
+    keyGenerator {function({String})}
+        Key generator is a function that generates a unique key for the
+        object path field {String}.
+        Default is md5 of the objects path field.
+
+###### Implements
+
+    find(options, callback(err, results))
+    findById(key, callback(err, result))
+    create(object, callback(err))
+    update(key, object, callback(err))
+    remove(key, callback(err))
 
 ## Plugins
 
