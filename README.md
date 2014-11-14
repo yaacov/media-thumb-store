@@ -137,7 +137,7 @@ myMedia.updateFromDir(__dirname + '/img', function() {
             skip {Number}
             limit {Number}
             sortBy {String}
-            where {Array.<String>}
+            where {String[]} ( * See format of where string )
         
     findById(key, callback(err, result))
         Get one media item from the data storage.
@@ -150,7 +150,21 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     
     updateFromDir(root, callback(err))
         Recurcivly append/update all media items in a root folder.
-    
+
+######## Format of where string: <field><op><value>
+
+    For example:
+        'name~=yosi' filter results where name
+        match the regular exprsion /yosi/
+        'name==yosi' filter results where name
+        is exactly 'yosi'
+
+    implemented Operators:
+        ~= Regular exprsion
+        == Equal to
+        <  Less then
+        >  greater then
+
 #### gmThumbnailer 
 
 ###### Options
@@ -226,7 +240,7 @@ myMedia.updateFromDir(__dirname + '/img', function() {
     remove(key, callback(err))
     removeAll(callback(err))
 
-## Plugins
+## User plugins
 
 #### Thumbnailers plugins
 
@@ -278,19 +292,6 @@ A plug-in store module for data storage
             '-name' will sort by 'name' backwords
             
         where {Array.<String>} a list of where strings
-            Format of where string: <field><op><value>
-            
-            For example:
-                'name~=yosi' filter results where name
-                match the regular exprsion /yosi/
-                'name==yosi' filter results where name
-                is exactly 'yosi'
-            
-            implemented Operators:
-                ~= Regular exprsion
-                == Equal to
-                <  Less then
-                >  greater then
             
 ( An example store module is in lib/backends/ )
 
