@@ -106,7 +106,7 @@ function testStorage(next) {
   });
 }
 
-** 
+/** 
  * Test our media storage thumbnailer
  * Find the happy-cat image in the storage meta-data 
  * and make a thumbnail for it.
