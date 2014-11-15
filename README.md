@@ -1,8 +1,9 @@
 # media-thumb-store
 
 [![Build Status](https://secure.travis-ci.org/yaacov/media-thumb-store.png?branch=master)](http://travis-ci.org/yaacov/media-thumb-store)
+[![Dependency Status](https://david-dm.org/yaacov/media-thumb-store.png)](https://david-dm.org/yaacov/media-thumb-store)
 [![NPM Version](https://img.shields.io/npm/v/gm.svg?style=flat)](https://www.npmjs.org/package/media-thumb-store)
-[![Dependency Status](https://david-dm.org/yaacov/media-thumb-store.png)](https://david-dm.org/yaacov/media-thumb-store.png)
+
 
 Media files key-value store with on the fly thumbnail generation.
 Support pluggable thumbnail generators for different media types.
