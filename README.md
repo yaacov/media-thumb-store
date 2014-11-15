@@ -2,6 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/yaacov/media-thumb-store.png?branch=master)](http://travis-ci.org/yaacov/media-thumb-store)
 [![Dependency Status](https://david-dm.org/yaacov/media-thumb-store.png)](https://david-dm.org/yaacov/media-thumb-store)
+[![devDependency Status](https://david-dm.org/yaacov/media-thumb-store/dev-status.svg)](https://david-dm.org/yaacov/media-thumb-store#info=devDependencies)
 [![NPM Version](https://img.shields.io/npm/v/gm.svg?style=flat)](https://www.npmjs.org/package/media-thumb-store)
 
 
