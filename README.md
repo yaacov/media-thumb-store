@@ -62,6 +62,24 @@ var imageThumbnailer = new mediaThumbStore.gmThumbnailer({
   thumbDir: __dirname
 });
 
+/** 
+ * Test our thumbnailer function
+ * If the __dirname + '/normal' folder exsits a new thumbnail will
+ * be created inside it.
+ * @param {requestCallback} next Call next functions.
+ */
+function testThumbnailer(next) {
+  imageThumbnailer(__dirname + '/img/happy-cat.jpg', 'normal', function(err, path) {
+    if (err) {
+      console.log('  Thumbnail not created');
+    } else {
+      console.log('  Thumbnail (size: normal) created at:' + path);
+    }
+    
+    next();
+  });
+}
+
 /**
  * Create a new media storage
  */
@@ -70,23 +88,42 @@ var myMedia = new mediaThumbStore({
   imageThumbnailer: imageThumbnailer
 });
 
-// Scan all media files in './img' folder and add them to storage
-myMedia.updateFromDir(__dirname + '/img', function() {
-  // Print first 100 files found, order by name
-  myMedia.find({skip: 0, limit: 100, sortBy: 'name'}, function(err, results) {
-    console.log(results);
+** 
+ * Test our media storage object
+ * Scan a media dirctory and insert all meta-data about the files 
+ * to our storage object.
+ * @param {requestCallback} next Call next functions.
+ */
+function testStorage(next) {
+  myMedia.updateFromDir(__dirname + '/img', function() {
+    // Print first 100 files found, order by name
+    myMedia.find({skip: 0, limit: 100, sortBy: 'name'}, function(err, results) {
+      console.log(results);
+    });
+
+    next();
   });
-  
+}
+
+** 
+ * Test our media storage thumbnailer
+ * Find the happy-cat image in the storage meta-data 
+ * and make a thumbnail for it.
+ * @param {requestCallback} next Call next functions.
+ */
+function testFindThumb(next) {
   // Create thumbnail for the first file named 'happy-cat'
   myMedia.find({where: ['name==happy-cat']}, function(err, results) {
+    // take the id of the first file found
     var id = results[0]._id;
 
     myMedia.findThumbById(id, 'normal', function(err, path) {
-      console.log('Created thumbnail: ' + path);
+      console.log('Created thumbnail (size: normal): ' + path);
+      
+      next();
     });
   });
-});
-    
+}
 ```
 ## Options
 
