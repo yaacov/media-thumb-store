@@ -56,7 +56,7 @@ describe('Load media files (Use MongoDB backend)', function() {
      */
     function searchMedaiFolder(path, next) {
       myMedia.updateFromDir(path, function() {
-        console.log('  Before test: data storage build from folder complete.');
+        console.log('  MongoDB: data storage build from folder complete.');
         next();
       });
     }
@@ -65,10 +65,10 @@ describe('Load media files (Use MongoDB backend)', function() {
     // method of the backend
     myStore.removeAll(function(err) {
       if (!err) {
-        console.log('  Before test: data storage cleanup complete.');
+        console.log('  MongoDB: data storage cleanup complete.');
         searchMedaiFolder(mediaDir, done);
       } else {
-        console.log('  Before test: fail data storage cleanup.');
+        console.log('  MongoDB: fail data storage cleanup.');
         done();
       }
     });

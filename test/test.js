@@ -47,7 +47,7 @@ describe('Load media files', function() {
     // Append all media files in media folder to the database
     // Memory is always empty on startup, no need to clear data storage
     myMedia.updateFromDir(mediaDir, function() {
-      console.log('  Before test: data storage build from folder complete.');
+      console.log('  Memory: data storage build from folder complete.');
       done();
     });
   });
@@ -72,7 +72,7 @@ describe('Load media files', function() {
     });
   });
 
-  // Get a default thumb path for an video
+  // Get a default thumb path for an audio file
   it('audio-file: should get the default thumb for audio', function(done) {
     var query = {
       where: ['mime~=^audio']
@@ -88,7 +88,7 @@ describe('Load media files', function() {
     });
   });
 
-  // Get a thumb path for an image
+  // Get a thumb path for a video file
   it('video-file: should create a thumbnail image and save it', function(done) {
     var query = {
       where: ['mime~=^video']
@@ -107,7 +107,7 @@ describe('Load media files', function() {
     });
   });
 
-  // Get a thumb path for an image
+  // Get a thumb path for an image file
   it('image-file: should create a thumbnail image and save it', function(done) {
     var query = {
       where: ['mime~=^image', 'name==night-cats']
