@@ -47,14 +47,29 @@ describe('Load media files (Use MongoDB backend)', function() {
       videoThumbnailer: videoThumbnailer
     });
 
-    // Search and append all media files in media folder
+    /**
+     * Search and append all media files in media folder
+     * to the data store
+     *
+     * @param {String} path The media file path
+     * @param {requestCallback} next
+     */
+    function searchMedaiFolder(path, next) {
+      myMedia.updateFromDir(path, function() {
+        console.log('  Before test: data storage build from folder complete.');
+        next();
+      });
+    }
+
+    // MongoDb may hold old data, clean it by using the removeAll
+    // method of the backend
     myStore.removeAll(function(err) {
-      if (err) {
-        done();
+      if (!err) {
+        console.log('  Before test: data storage cleanup complete.');
+        searchMedaiFolder(mediaDir, done);
       } else {
-        myMedia.updateFromDir(mediaDir, function() {
-          done();
-        });
+        console.log('  Before test: fail data storage cleanup.');
+        done();
       }
     });
   });
@@ -79,7 +94,7 @@ describe('Load media files (Use MongoDB backend)', function() {
     });
   });
 
-  // Get a default thumb path for an video
+  // Get a default thumb path for an audio media file
   it('audio-file: should get the default thumb for audio', function(done) {
     var query = {
       where: ['mime~=^audio']

@@ -44,8 +44,10 @@ describe('Load media files', function() {
       videoThumbnailer: videoThumbnailer
     });
 
-    // Search and append all media files in media folder to the database
+    // Append all media files in media folder to the database
+    // Memory is always empty on startup, no need to clear data storage
     myMedia.updateFromDir(mediaDir, function() {
+      console.log('  Before test: data storage build from folder complete.');
       done();
     });
   });

@@ -1,6 +1,6 @@
 {
   "name": "media-thumb-store",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Media files key-value store with pluggable thumbnail generators and storage backends.",
   "author": "Yaacov Zamir <kobi.zamir@gmail.com>",
   "main": "index.js",
