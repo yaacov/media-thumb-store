@@ -60,6 +60,7 @@ var mediaThumbStore = require('media-thumb-store');
  *
  */
 var imageThumbnailer = new mediaThumbStore.gmThumbnailer({
+  // Set the root path for the thumbnail folders
   thumbDir: __dirname
 });
 
@@ -85,7 +86,10 @@ function testThumbnailer(next) {
  * Create a new media storage
  */
 var myMedia = new mediaThumbStore({
+  // Set the full path of the image sent if thumbnail creation fails
   defaultIcon: __dirname + '/normal/default.jpg',
+  // Set the function to use for the creation of thumbnails for
+  // files with 'image' mime type.
   imageThumbnailer: imageThumbnailer
 });
 
