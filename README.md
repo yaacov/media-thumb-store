@@ -91,7 +91,7 @@ var myMedia = new mediaThumbStore({
 
 /** 
  * Test our media storage object
- * Scan a media dirctory and insert all meta-data about the files 
+ * Scan a media folder and insert all meta-data about the files 
  * to our storage object.
  * @param {requestCallback} next Call next functions.
  */
@@ -100,9 +100,9 @@ function testStorage(next) {
     // Print first 100 files found, order by name
     myMedia.find({skip: 0, limit: 100, sortBy: 'name'}, function(err, results) {
       console.log(results);
-    });
 
-    next();
+      next();
+    });
   });
 }
 
@@ -114,7 +114,7 @@ function testStorage(next) {
  */
 function testFindThumb(next) {
   // Create thumbnail for the first file named 'happy-cat'
-  myMedia.find({where: ['name==happy-cat']}, function(err, results) {
+  myMedia.find({where: ['mime~=^image', 'name==happy-cat']}, function(err, results) {
     // take the id of the first file found
     var id = results[0]._id;
 
