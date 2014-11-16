@@ -102,6 +102,7 @@ var myMedia = new mediaThumbStore({
 function testStorage(next) {
   myMedia.updateFromDir(__dirname + '/img', function() {
     // Print first 100 files found, order by name
+    // See find method options below.
     myMedia.find({skip: 0, limit: 100, sortBy: 'name'}, function(err, results) {
       console.log(results);
 
@@ -117,7 +118,7 @@ function testStorage(next) {
  * @param {requestCallback} next Call next functions.
  */
 function testFindThumb(next) {
-  // Create thumbnail for the first file named 'happy-cat'
+  // Create thumbnail for the first image file named 'happy-cat'
   myMedia.find({where: ['mime~=^image', 'name==happy-cat']}, function(err, results) {
     // take the id of the first file found
     var id = results[0]._id;
@@ -303,8 +304,7 @@ Example:
  * An example thumbnailer function that always return the same thumb
  * Not very useful...
  *
- * @par
-      am {String} path The path to a media file
+ * @param {String} path The path to a media file
  * @param {String} size The size of the thumbnail ('normal', 'large')
  * @param {function({Error} err, {String} path)} callback The 
  *    callback function that will receive the thumb image file path
